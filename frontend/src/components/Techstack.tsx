@@ -2,10 +2,10 @@ import Image from 'next/image';
 
 export const TechStack = () => {
   const frontendTechs = [
-    { name: 'JavaScript', icon: 'javascript.svg', skillLevel: 5 },
-    { name: 'React', icon: 'react.svg', skillLevel: 5 },
-    { name: 'Next.js', icon: 'next.svg', skillLevel: 5 },
-    { name: 'TypeScript', icon: 'typescript-2.svg', skillLevel: 4 },
+    { name: 'JavaScript', icon: 'javascript.svg', skillLevel: 4 },
+    { name: 'React', icon: 'react.svg', skillLevel: 4 },
+    { name: 'Next.js', icon: 'next.svg', skillLevel: 2 },
+    { name: 'TypeScript', icon: 'typescript-2.svg', skillLevel: 3 },
   ];
 
   const backendTechs = [
@@ -13,13 +13,13 @@ export const TechStack = () => {
     { name: 'C++', icon: 'c++.svg', skillLevel: 3 },
     { name: 'NestJS', icon: 'nest.svg', skillLevel: 4 },
     { name: 'Django', icon: 'django.svg', skillLevel: 4 },
-    { name: 'FastAPI', icon: 'fastapi.svg', skillLevel: 4 },
+    { name: 'FastAPI', icon: 'fastapi.svg', skillLevel: 3 },
   ];
 
   const databasesTechs = [
     { name: 'PostgreSQL', icon: 'postgresql.svg', skillLevel: 4 },
     { name: 'MySQL', icon: 'mysql.svg', skillLevel: 3 },
-    { name: 'SQLite', icon: 'sqllite.svg', skillLevel: 3 },
+    { name: 'SQLite', icon: 'sqllite.svg', skillLevel: 4 },
   ];
 
   const cloudTechs = [

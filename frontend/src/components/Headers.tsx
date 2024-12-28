@@ -2,25 +2,22 @@ import Image from 'next/image';
 import { Email, Phone, LogoGithub, LogoLinkedin } from '@carbon/icons-react';
 
 export const Header = () => (
-  <header className="bg-gray-900 text-white p-10 flex items-center justify-between">
-    {/* Profile Picture */}
-    <div className="flex items-center space-x-8">
-      <div className="relative w-40 h-40 rounded-full border-4 border-white overflow-hidden">
+  <header className="bg-gray-900 text-white p-6 md:p-10 flex items-center justify-between flex-col md:flex-row">
+    <div className="flex items-center space-x-4 md:space-x-8 mb-6 md:mb-0">
+      <div className="relative w-24 h-24 md:w-40 md:h-40 rounded-full border-4 border-white overflow-hidden">
         <Image
-          src="/ukr.svg" // Replace with the path to your profile picture
+          src="/ukr.svg"
           alt="Profile Picture"
           fill
           className="object-cover"
           priority
         />
       </div>
-      <h1 className="text-5xl font-bold">Umair Rinde</h1>
+      <h1 className="text-3xl md:text-5xl font-bold">Umair Rinde</h1>
     </div>
 
-    {/* Contact Details */}
-    <div className="flex items-center space-x-16">
-      {/* Contact Info */}
-      <div className="flex flex-col text-xl space-y-3">
+    <div className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-16">
+      <div className="flex flex-col text-lg md:text-xl space-y-3 items-center md:items-start">
         <a
           href="tel:+919359343936"
           className="flex items-center space-x-4 hover:text-gray-400"
@@ -37,7 +34,6 @@ export const Header = () => (
         </a>
       </div>
 
-      {/* Social Links */}
       <div className="flex space-x-8">
         <a
           href="https://github.com/Umair-Rinde"
