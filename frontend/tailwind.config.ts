@@ -45,6 +45,24 @@ export default {
       borderWidth: {
         "1": "1px", // Custom border width
       },
+      fontFamily: {
+        sans: ['Poppins', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'], // Use Poppins/Roboto as the main font
+        serif: ['Georgia', 'Times New Roman', 'serif'], // Serif for elegance
+      },
+      fontSize: {
+        "2xl": "1.5rem", // Adjusting font sizes for better readability
+        "3xl": "1.875rem",
+        "4xl": "2.25rem",
+        "5xl": "3rem", // Larger for emphasis
+      },
+      lineHeight: {
+        relaxed: "1.75", // Relaxed line-height for easier reading
+        snug: "1.375", // Tighter line-height for headings
+      },
+      letterSpacing: {
+        wide: "0.05em", // Adds spacing between letters
+        wider: "0.1em", // More spaced out for emphasis
+      },
     },
   },
   plugins: [],

@@ -1,38 +1,61 @@
-// components/Header.tsx
 import Image from 'next/image';
-import React from 'react';
+import { Email, Phone, LogoGithub, LogoLinkedin } from '@carbon/icons-react';
 
-const Header: React.FC = () => {
-  return (
-    <header className="fixed top-0 left-0 w-full h-header-heigh text-gray-200 flex bg-custom-black items-center justify-between border-b-2 border-gray-500 shadow-glaze ">
-      {/* Logo */}
-      
-      <Image
-      src="/profile.png"
-      width={230}
-      height={200}
-      alt="Picture of the author"
-      className='flex justify-start  p-0'
-      style={{
-        WebkitMaskImage: 'linear-gradient(to right, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0))',
-        maskImage: 'linear-gradient(to right, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0))'
-      }}
-    />
-      {/* <div className="text-2xl font-bold text-gray-100">Umair Rinde</div> */}
-      {/* Navigation */}
-      {/* <nav className="space-x-6">
-        <a href="#about" className="hover:text-gray-300 transition">
-          About
-        </a>
-        <a href="#projects" className="hover:text-gray-300 transition">
-          Projects
-        </a>
-        <a href="#contact" className="hover:text-gray-300 transition">
-          Contact
-        </a>
-      </nav> */}
-    </header>
-  );
-};
+export const Header = () => (
+  <header className="bg-gray-900 text-white p-10 flex items-center justify-between">
+    {/* Profile Picture */}
+    <div className="flex items-center space-x-8">
+      <div className="relative w-40 h-40 rounded-full border-4 border-white overflow-hidden">
+        <Image
+          src="/ukr.svg" // Replace with the path to your profile picture
+          alt="Profile Picture"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+      <h1 className="text-5xl font-bold">Umair Rinde</h1>
+    </div>
 
-export default Header;
+    {/* Contact Details */}
+    <div className="flex items-center space-x-16">
+      {/* Contact Info */}
+      <div className="flex flex-col text-xl space-y-3">
+        <a
+          href="tel:+919359343936"
+          className="flex items-center space-x-4 hover:text-gray-400"
+        >
+          <Phone size={36} />
+          <span>+91 9359343936</span>
+        </a>
+        <a
+          href="mailto:rindeumair@gmail.com"
+          className="flex items-center space-x-4 hover:text-gray-400"
+        >
+          <Email size={36} />
+          <span>rindeumair@gmail.com</span>
+        </a>
+      </div>
+
+      {/* Social Links */}
+      <div className="flex space-x-8">
+        <a
+          href="https://github.com/Umair-Rinde"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-gray-400"
+        >
+          <LogoGithub size={50} />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/umair-rinde-198024231/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-gray-400"
+        >
+          <LogoLinkedin size={50} />
+        </a>
+      </div>
+    </div>
+  </header>
+);
