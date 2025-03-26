@@ -2,9 +2,9 @@ import Image from 'next/image';
 import { Email, Phone, LogoGithub, LogoLinkedin } from '@carbon/icons-react';
 
 export const Header = () => (
-  <header className="bg-gray-900 text-white p-6 md:p-12 flex flex-col md:flex-row items-center justify-between">
-    <div className="flex flex-col md:flex-row items-center mb-8 md:mb-0">
-      <div className="relative w-24 h-24 md:w-40 md:h-40 rounded-full border-4 border-white overflow-hidden">
+  <header className="bg-gray-900 text-white p-6 md:p-12 gap-2 flex flex-col md:flex-row items-center justify-between">
+    <div className="flex flex-col md:flex-row items-center md:items-start">
+      <div className="relative w-24 h-24 md:w-40 md:h-40 shrink-0 rounded-full border-4 border-white overflow-hidden">
         <Image
           src="/ukr.svg"
           alt="Profile Picture"
