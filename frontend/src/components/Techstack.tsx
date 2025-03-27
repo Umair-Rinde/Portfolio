@@ -35,7 +35,7 @@ export const TechStack = () => {
 
       {/* Frontend Section */}
       <div className="mb-12">
-        <h3 className="text-2xl font-semibold mb-6 text-center text-gray-100 font-poppins">Frontend</h3>
+        <h3 className="text-2xl font-semibold mb-6 text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 font-poppins">Frontend</h3>
         <div className="flex flex-wrap gap-4 justify-center">
   {frontendTechs.map((tech, index) => (
     <div
@@ -68,7 +68,7 @@ export const TechStack = () => {
 
       {/* Backend Section */}
       <div className="mb-12">
-        <h3 className="text-2xl font-semibold mb-6 text-center text-gray-100 font-poppins">Backend</h3>
+        <h3 className="text-2xl font-semibold mb-6 text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 font-poppins">Backend</h3>
         <div className="flex flex-wrap gap-4 justify-center">
           {backendTechs.map((tech, index) => (
             <div
@@ -100,7 +100,7 @@ export const TechStack = () => {
 
       {/* Databases Section */}
       <div className="mb-12">
-        <h3 className="text-2xl font-semibold mb-6 text-center text-gray-100 font-poppins">Databases</h3>
+        <h3 className="text-2xl font-semibold mb-6 text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 font-poppins">Databases</h3>
         <div className="flex flex-wrap gap-8 justify-center">
           {databasesTechs.map((tech, index) => (
             <div
@@ -132,7 +132,7 @@ export const TechStack = () => {
 
       {/* Cloud Section */}
       <div className="mb-12">
-        <h3 className="text-2xl font-semibold mb-6 text-center text-gray-100 font-poppins">Cloud Services</h3>
+        <h3 className="text-2xl font-semibold mb-6 text-center font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600 font-poppins">Cloud Services</h3>
         <div className="flex flex-wrap gap-8 justify-center">
           {cloudTechs.map((tech, index) => (
             <div

@@ -1,120 +1,117 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { motion, useAnimation, useInView } from 'framer-motion';
 
 export const Projects = () => {
   const projects = [
     {
       name: 'BizItsm',
-      description: 'The ITSM project focuses on streamlining IT service management processes, including incident, problem, and change management. It aims to automate workflows, improve service delivery, and enhance efficiency. The solution provides a centralized platform for managing IT requests and issues within an organization.',
+      description: 'The ITSM project focuses on streamlining IT service management processes, including incident, problem, and change management. It aims to automate workflows, improve service delivery, and enhance efficiency.',
       image: 'itsm.svg',
       link: 'https://bizitsm.com',
     },
     {
       name: 'Educationist Ai',
-      description: 'Educationist.ai is a career guidance platform that leverages LangChain and ChatGPT to provide personalized career advice. The project uses advanced AI models to analyze user inputs and suggest tailored career paths. It aims to empower individuals with insights and recommendations for their professional journey.',
+      description: 'Educationist.ai is a career guidance platform that leverages LangChain and ChatGPT to provide personalized career advice using advanced AI models to analyze user inputs and suggest tailored career paths.',
       image: 'educationist.svg',
       link: '#',
     },
     {
       name: 'LMS',
-      description: 'The LMS built with NestJS is a comprehensive platform that includes features such as blogs and course purchasing options. It allows users to access educational content, engage with blogs, and purchase courses seamlessly. The system is designed for scalability, offering a user-friendly interface for both learners and administrators.',
+      description: 'The LMS built with NestJS is a comprehensive platform that includes features such as blogs and course purchasing options, designed for scalability with a user-friendly interface.',
       image: 'lms.png',
       link: '#',
     },
     {
       name: 'FEMS',
-      description: 'The FEMS (Farmer Empowerment Management System) project is designed to support farmers by providing tools and resources to enhance their productivity and decision-making. The platform offers features such as market insights, farming tips, and financial assistance options. Its goal is to empower farmers with the knowledge and support needed to improve their livelihoods and sustain their agricultural practices.',
+      description: 'The Farmer Empowerment Management System supports farmers by providing tools and resources to enhance productivity and decision-making with market insights and farming tips.',
       image: 'fems.png',
       link: '#',
     },
   ];
 
-  const sliderRef = useRef<Slider>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const projectRefs = projects.map(() => React.useRef(null));
+  const inViewFlags = projectRefs.map((ref) => useInView(ref, { once: false, amount: 1 }));
 
-  const settings = {
-    dots: false, 
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    beforeChange: (current: number, next: number) => setCurrentIndex(next),
-    arrows: false, 
-  };
-
-  const handlePrev = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickPrev(); 
+  useEffect(() => {
+    const visibleIndex = inViewFlags.findIndex((inView) => inView);
+    if ( visibleIndex !== activeIndex) {
+      setActiveIndex(visibleIndex);
     }
-  };
-
-  const handleNext = () => {
-    if (sliderRef.current) {
-      sliderRef.current.slickNext();
-    }
-  };
-
-  const handleDotClick = (index: number) => {
-    if (sliderRef.current) {
-      sliderRef.current.slickGoTo(index); 
-    }
-  };
+  }, [inViewFlags, activeIndex]);
 
   return (
     <section className="py-12 bg-gray-900 text-white">
-      <h2 className="text-5xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-green-500 shadow-lg">
+      <h2 className="text-5xl font-bold mb-12 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-green-500 shadow-lg">
         Projects
       </h2>
 
-      <div className="flex justify-center items-center mx-auto max-w-4xl">
-        <div className="relative w-full">
-          <Slider ref={sliderRef} {...settings}>
+      <div className="container mx-auto px-4 max-w-4xl">
+        <div className="relative flex flex-col md:flex-row gap-16">
+          {/* Vertical Stepper (Desktop) - Adjusted height */}
+          <div className="hidden md:flex flex-col items-center mr-8 h-full">
+            {projects.map((_, index) => (
+              <React.Fragment key={index}>
+                <button
+                  className={`w-6 h-6 rounded-full flex items-center justify-center transition-all ${
+                    activeIndex === index ? 'bg-blue-500 scale-125' : 'bg-gray-600'
+                  }`}
+                >
+                  {activeIndex === index && (
+                    <motion.div
+                      layoutId="activeDot"
+                      className="w-3 h-3 bg-white rounded-full"
+                      transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                    />
+                  )}
+                </button>
+                {index < projects.length - 1 && (
+                  <div 
+                    className={`w-1 ${activeIndex > index ? 'bg-blue-500' : 'bg-gray-600'}`}
+                    style={{ height: '450px' }} // Increased height to match card spacing
+                  />
+                )}
+              </React.Fragment>
+            ))}
+          </div>
+
+          {/* Project Cards - Same as before */}
+          <div className="flex-1 flex flex-col gap-16">
             {projects.map((project, index) => (
-              <div key={index} className="flex justify-center w-10 items-center">
+              <motion.div
+                key={index}
+                ref={projectRefs[index]}
+                initial={{ opacity: 0, y: 20 }}
+                animate={inViewFlags[index] ? { opacity: 1, y: 0 } : { opacity: 0.5, y: 20 }}
+                transition={{ duration: 0.5 }}
+                className="w-full"
+              >
                 <Link href={project.link}>
-                  <div className="bg-gray-800 p-6 align-middle rounded-xl shadow-lg w-full text-center transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl hover:bg-gray-700">
-                    <div className="w-full h-48 mx-auto mb-4 relative bg-gray-600 rounded-xl flex justify-center items-center overflow-hidden">
+                  <div className="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:scale-[1.01]">
+                    <div className="h-48 w-full bg-gray-600 relative overflow-hidden">
                       <img
                         src={project.image}
                         alt={project.name}
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-100 mb-3">{project.name}</h3>
-                    <p className="text-sm text-gray-400 mb-4">{project.description}</p>
+                    <div className="p-6">
+                      <h3 className="text-2xl font-semibold text-gray-100 mb-3">
+                        {project.name}
+                      </h3>
+                      <p className="text-gray-400 mb-4">
+                        {project.description}
+                      </p>
+                      <span className="inline-block px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors">
+                        View Project
+                      </span>
+                    </div>
                   </div>
                 </Link>
-              </div>
-            ))}
-          </Slider>
-
-          <button
-            className="absolute top-1/2 left-0 transform -translate-y-1/2 p-2 bg-transparent text-white rounded-full hover:bg-gray-700"
-            onClick={handlePrev}
-          >
-            &#60;
-          </button>
-          <button
-            className="absolute top-1/2 right-0 transform -translate-y-1/2 p-2 bg-transparent text-white rounded-full hover:bg-gray-700"
-            onClick={handleNext}
-          >
-            &#62;
-          </button>
-
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-4">
-            {projects.map((_, index) => (
-              <button
-                key={index}
-                className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-blue-500' : 'bg-gray-400'}`}
-                onClick={() => handleDotClick(index)} 
-              />
+              </motion.div>
             ))}
           </div>
         </div>
