@@ -21,7 +21,7 @@ const ThemeProviderContext = createContext<ThemeProviderState | undefined>(undef
 export function ThemeProvider({
   children,
   defaultTheme = 'system',
-  storageKey = 'lovable-ui-theme',
+  storageKey = 'portfolio-ui-theme',
 }: ThemeProviderProps) {
   const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<Theme>(defaultTheme);
