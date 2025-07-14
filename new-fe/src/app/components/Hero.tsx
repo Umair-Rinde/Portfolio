@@ -30,19 +30,19 @@ const Hero = () => {
             {/* Social Links */}
             <div className="flex justify-center lg:justify-start space-x-6 mb-12">
               <a
-                href="#"
+                href="https://github.com/Umair-Rinde"
                 className="glass-card p-3 rounded-full hover:scale-110 transition-all duration-300 group"
               >
                 <Github className="w-6 h-6 text-foreground/80 group-hover:text-foreground" />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/umair-rinde-198024231/"
                 className="glass-card p-3 rounded-full hover:scale-110 transition-all duration-300 group"
               >
                 <Linkedin className="w-6 h-6 text-foreground/80 group-hover:text-foreground" />
               </a>
               <a
-                href="#"
+                href="mailto:rindeumair@gmail.com"
                 className="glass-card p-3 rounded-full hover:scale-110 transition-all duration-300 group"
               >
                 <Mail className="w-6 h-6 text-foreground/80 group-hover:text-foreground" />

@@ -52,19 +52,22 @@ const Contact = () => {
       icon: <MapPin className="w-6 h-6" />,
       label: 'Location',
       value: 'Pune, India',
-      subtext: 'Available for remote, hybrid, or offline work.'
+      subtext: 'Available for remote, hybrid, or offline work.',
+        link:'https://www.google.com/maps/place/Pune', 
     },
     {
       icon: <Mail className="w-6 h-6" />,
       label: 'Email',
       value: 'rindeumair@gmail.com',
-      subtext: 'Best way to reach me'
+      subtext: 'Best way to reach me',
+        link:'mailto:rindeumair@gmail.com'
     },
     {
       icon: <Phone className="w-6 h-6" />,
       label: 'Phone',
       value: '+91 9359 343936',
-      subtext: 'Available 9AM - 9PM IST'
+      subtext: 'Available 9AM - 9PM IST',
+        link:'tel:+919359343936'
     },
   ];
 
@@ -124,7 +127,9 @@ const Contact = () => {
               <h3 className="text-xl font-bold mb-6 font-mono">Get in Touch</h3>
               <div className="space-y-4">
                 {contactInfo.map((info, index) => (
-                  <div key={info.label} className="flex items-start space-x-4">
+                      <a href={info.link} key={index} className="flex items-start space-x-4" target="_blank">
+
+                    <div key={info.label} className="flex items-start space-x-4">
                     <div className="text-primary p-2 glass rounded-lg">
                       {info.icon}
                     </div>
@@ -134,6 +139,7 @@ const Contact = () => {
                       <p className="text-foreground/50 text-xs">{info.subtext}</p>
                     </div>
                   </div>
+                    </a>
                 ))}
               </div>
             </div>

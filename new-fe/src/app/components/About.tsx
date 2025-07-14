@@ -110,7 +110,7 @@ const About = () => {
             <div className="max-h-[350px] overflow-hidden relative px-10 rounded-2xl glass-card">
               <MotionDiv
                 className="space-y-6"
-                animate={{ y: ["0%", "-100%"] }}
+                animate={{ y: ["0%", "-50%"] }}
                 transition={{
                   duration: skills.length * 10,
                   ease: "linear",
