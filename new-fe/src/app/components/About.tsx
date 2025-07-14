@@ -71,8 +71,10 @@ const About = () => {
     <section id="about" className="py-20 relative">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-cyan-400 bg-clip-text text-transparent">
-            About Me
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-primary to-pink-400 bg-clip-text text-transparent">
+              About Me
+            </span>
           </h2>
           <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
             I'm a passionate full-stack developer with 5+ years of experience
