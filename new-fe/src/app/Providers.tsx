@@ -2,6 +2,7 @@
 
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import type { ThemeProviderProps } from 'next-themes';
+import ToasterProvider from './components/ToastProvider';
 
 export function Providers({ children, ...props }: ThemeProviderProps) {
   return (
@@ -12,6 +13,7 @@ export function Providers({ children, ...props }: ThemeProviderProps) {
       disableTransitionOnChange
       {...props}
     >
+      <ToasterProvider /> {/* ✅ Global toaster provider */}
       {children}
     </NextThemesProvider>
   );

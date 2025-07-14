@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { Send, MapPin, Phone, Mail, Github, Linkedin, Instagram, Terminal, Coffee, Code } from 'lucide-react';
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import toast from 'react-hot-toast';
+
 const Contact = () => {
     const formRef = useRef<HTMLFormElement | null>(null);
     const [formData, setFormData] = useState({
@@ -24,17 +26,18 @@ const Contact = () => {
     process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
   )
 
-      .then(
-        (result) => {
-          console.log('Email sent:', result.text);
-          alert('Message sent successfully!');
-          setFormData({ name: '', email: '', subject: '', message: '' });
-        },
-        (error) => {
-          console.error('Error sending email:', error.text);
-          alert('Failed to send message. Please try again.');
-        }
-      );
+  .then(
+    (result) => {
+      console.log('Email sent:', result.text);
+      toast.success('Message sent successfully!');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+    },
+    (error) => {
+      console.error('Error sending email:', error.text);
+      toast.error('Failed to send message. Please try again.');
+    }
+  );
+  
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
