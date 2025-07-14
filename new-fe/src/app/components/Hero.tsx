@@ -18,7 +18,7 @@ const Hero = () => {
                 Umair Rinde
               </span>
             </h1>
-            
+
             <div className="text-xl md:text-2xl text-foreground/80 mb-8 animate-slide-in">
               <div className="flex items-center justify-center lg:justify-start mb-2">
                 <Code2 className="w-6 h-6 mr-2 text-primary" />
@@ -66,25 +66,25 @@ const Hero = () => {
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary via-pink-400 to-cyan-400 p-1 animate-glow">
                 <div className="w-full h-full rounded-full bg-background/20 backdrop-blur-sm"></div>
               </div>
-              
+
               {/* Main image container with glass frame */}
               <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden glass-card p-4">
                 <div className="w-full h-full rounded-full overflow-hidden relative">
                   {/* Gradient overlay for better blending */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-pink-400/20 z-10 rounded-full"></div>
-                  
+
                   {/* Profile Image */}
                   <img
                     src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop&crop=face"
                     alt="John Doe - Full Stack Developer"
                     className="w-full h-full object-cover rounded-full"
                   />
-                  
+
                   {/* Inner border stroke */}
                   <div className="absolute inset-0 rounded-full border-2 border-white/20"></div>
                 </div>
               </div>
-              
+
               {/* Floating elements around image */}
               <div className="absolute -top-4 -right-4 glass-card p-2 rounded-lg animate-float">
                 <Code2 className="w-6 h-6 text-primary" />
@@ -98,11 +98,11 @@ const Hero = () => {
       </div>
 
       {/* Scroll Indicator */}
-      {/* <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-1 h-16 glass rounded-full flex items-end justify-center pb-2">
-          <div className="w-1 h-4 bg-gradient-to-t from-primary to-transparent rounded-full animate-glow"></div>
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 transform animate-bounce">
+        <div className="w-6 h-10 border-2 border-primary rounded-full flex items-start justify-center p-1 glass-card shadow-glass">
+          <div className="w-1 h-3 bg-gradient-to-t from-primary to-transparent rounded-full animate-glow"></div>
         </div>
-      </div> */}
+      </div>
     </section>
   );
 };
