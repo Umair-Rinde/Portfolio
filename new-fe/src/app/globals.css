@@ -250,6 +250,44 @@
     }
   }
 }
+
+
+
+
+.skill-modal-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+}
+
+.dark .skill-modal-card {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Content specific adjustments */
+.skill-modal-content {
+  color: oklch(0.3 0 0);
+}
+
+.dark .skill-modal-content {
+  color: oklch(0.9 0 0);
+}
+
+/* Proficiency bar visibility */
+.skill-modal-proficiency-track {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.dark .skill-modal-proficiency-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+
+
 /* Glass morphism utilities */
 .glass {
   background: rgba(255, 255, 255, 0.1);

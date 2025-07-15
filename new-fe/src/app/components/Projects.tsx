@@ -1,5 +1,5 @@
 'use client';
-import { ExternalLink, Github, Eye, Code, Star, GitFork, ChevronLeft, ChevronRight } from 'lucide-react';
+import {  Github, Eye, Star, GitFork, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
@@ -185,7 +185,7 @@ const Projects = () => {
 
           {/* Carousel Slides */}
           <div className={`flex items-center justify-center ${isMobile ? 'px-2' : 'gap-6 px-10'} py-6 md:py-10 min-h-[500px] md:min-h-[700px]`}>
-            {getVisibleProjects().map((project, index) => (
+            {getVisibleProjects().map((project) => (
               <motion.div
                 key={project.id}
                 custom={direction}

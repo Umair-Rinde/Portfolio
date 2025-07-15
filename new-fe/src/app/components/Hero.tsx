@@ -1,4 +1,5 @@
 import { ArrowDown, Github, Linkedin, Mail, Code2 } from 'lucide-react';
+import Image from 'next/image';
 
 const Hero = () => {
   return (
@@ -74,9 +75,11 @@ const Hero = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-pink-400/20 z-10 rounded-full"></div>
 
                   {/* Profile Image */}
-                  <img
+                  <Image
                     src="/profile.png"
-                    alt="John Doe - Full Stack Developer"
+                    width={400}
+                    height={400}
+                    alt="Umair Rinde - Full Stack Developer"
                     className="w-full h-full object-cover rounded-full"
                   />
 

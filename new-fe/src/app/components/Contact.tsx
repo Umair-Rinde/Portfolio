@@ -94,7 +94,7 @@ const Contact = () => {
             </span>
           </h2>
           <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-            Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
+            Have a project in mind? Let&apos;s discuss how we can work together to bring your ideas to life.
           </p>
         </div>
         <div className="grid lg:grid-cols-3 gap-8">
@@ -116,7 +116,7 @@ const Contact = () => {
               <div className="p-6 font-mono text-left">
                 <div className="text-green-400 mb-2">$ npm run contact-developer</div>
                 <div className="text-foreground/80 mb-2">✓ Developer available</div>
-                <div className="text-foreground/80 mb-2">✓ Coffee level: High</div>
+                <div className="text-foreground/80 mb-2">✓ Chai level: High</div>
                 <div className="text-foreground/80 mb-2">✓ Ready to code</div>
                 <div className="text-primary animate-pulse">▋</div>
               </div>
@@ -186,7 +186,7 @@ const Contact = () => {
             <div className="glass-card p-8 rounded-2xl animate-fade-in">
               <div className="flex items-center mb-6">
                 <Code className="w-6 h-6 mr-3 text-primary" />
-                <h3 className="text-2xl font-bold font-mono">Let's Build Something</h3>
+                <h3 className="text-2xl font-bold font-mono">Let&apos;s Build Something</h3>
               </div>
               
               <form  ref={formRef} onSubmit={handleSubmit} className="space-y-6">
