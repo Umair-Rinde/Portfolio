@@ -1,6 +1,6 @@
 "use client";
 
-import { Code, Palette, Zap, Users, Terminal, Pause, Play, ChevronUp, ChevronDown } from "lucide-react";
+import { Code, Palette, Zap, Users, Terminal, Pause, Play, ChevronUp, ChevronDown, ChevronRight } from "lucide-react";
 import { motion, useAnimationFrame, useMotionValue, useTransform } from "framer-motion";
 import { useRef, useState, useLayoutEffect } from "react";
 import SkillModal from "./SkillModal";
@@ -17,6 +17,7 @@ type Skill = {
 };
 
 const About = () => {
+  const [firstCardHintShown, setFirstCardHintShown] = useState(false);
   const skills = [
     {
       name: 'Python',
@@ -292,70 +293,91 @@ const features = [
 
           {/* Skills */}
           <div className="space-y-8">
-            <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center">
+            <div>
               <h3 className="text-2xl font-bold">Technical Skills</h3>
-              <div className="flex space-x-2">
-                <button 
-                  onClick={scrollUp}
-                  className="p-2 rounded-full glass-card hover:bg-foreground/10 transition-colors"
-                  aria-label="Scroll up"
-                >
-                  <ChevronUp className="w-5 h-5" />
-                </button>
-                <button 
-                  onClick={togglePlayPause}
-                  className="p-2 rounded-full glass-card hover:bg-foreground/10 transition-colors"
-                  aria-label={isPlaying ? "Pause" : "Play"}
-                >
-                  {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
-                </button>
-                <button 
-                  onClick={scrollDown}
-                  className="p-2 rounded-full glass-card hover:bg-foreground/10 transition-colors"
-                  aria-label="Scroll down"
-                >
-                  <ChevronDown className="w-5 h-5" />
-                </button>
-              </div>
+              <p className="text-sm text-foreground/60 mt-1">
+                Tap any skill for details →
+              </p>
             </div>
-            <div 
-              ref={containerRef}
-              className="max-h-[350px] overflow-hidden relative px-10 rounded-2xl glass-card"
-            >
-              <MotionDiv
-                className="space-y-6"
-                style={{ y: yTransform }}
+            <div className="flex space-x-2">
+              <button 
+                onClick={scrollUp}
+                className="p-2 rounded-full glass-card hover:bg-foreground/10 transition-colors"
+                aria-label="Scroll up"
               >
-                {[...skills, ...skills].map((skill, index) => (
-                  <div
-                    ref={index === 0 ? itemRef : null}
-                    key={`${skill.name}-${index}`}
-                    className="glass-card p-6 rounded-xl animate-slide-in"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                    onClick={() => handleSkillClick(skill)}
-                  >
-                    <div className="flex justify-between mb-3">
-                  <div className="flex items-center gap-3">
-                    <img 
-                      src={skill.image} 
-                      alt={skill.name}
-                      className="w-6 h-6 object-contain"
-                    />
-                    <span className="font-semibold">{skill.name}</span>
-                  </div>
-                  <span className="text-foreground/70">{skill.level}%</span>
-                </div>
-                <div className="w-full bg-foreground/10 rounded-full h-3 overflow-hidden">
-                  <div 
-                    className={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000 ease-out`}
-                    style={{ width: `${skill.level}%` }}
-                  ></div>
-                </div>
-              </div>
-                ))}
-              </MotionDiv>
+                <ChevronUp className="w-5 h-5" />
+              </button>
+              <button 
+                onClick={togglePlayPause}
+                className="p-2 rounded-full glass-card hover:bg-foreground/10 transition-colors"
+                aria-label={isPlaying ? "Pause" : "Play"}
+              >
+                {isPlaying ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+              </button>
+              <button 
+                onClick={scrollDown}
+                className="p-2 rounded-full glass-card hover:bg-foreground/10 transition-colors"
+                aria-label="Scroll down"
+              >
+                <ChevronDown className="w-5 h-5" />
+              </button>
             </div>
           </div>
+          
+          <div 
+            ref={containerRef}
+            className="max-h-[350px] overflow-hidden relative px-10 rounded-2xl glass-card"
+          >
+            <MotionDiv
+              className="space-y-6"
+              style={{ y: yTransform }}
+            >
+              {[...skills, ...skills].map((skill, index) => (
+                <motion.div
+                  ref={index === 0 ? itemRef : null}
+                  key={`${skill.name}-${index}`}
+                  className="glass-card p-6 rounded-xl cursor-pointer relative active:scale-95 transition-transform"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                  onClick={() => handleSkillClick(skill)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <img 
+                        src={skill.image} 
+                        alt={skill.name}
+                        className="w-6 h-6 object-contain"
+                      />
+                      <span className="font-semibold">{skill.name}</span>
+                    </div>
+                    <span className="text-foreground/70">{skill.level}%</span>
+                  </div>
+                  <div className="w-full bg-foreground/10 rounded-full h-3 overflow-hidden">
+                    <div 
+                      className={`h-full bg-gradient-to-r ${skill.color} rounded-full transition-all duration-1000 ease-out`}
+                      style={{ width: `${skill.level}%` }}
+                    ></div>
+                  </div>
+                  
+                  {/* Click indicator arrow */}
+                  <motion.div
+                    initial={!firstCardHintShown && index === 0 ? { scale: 1.5 } : {}}
+                    animate={!firstCardHintShown && index === 0 ? { 
+                      scale: [1.5, 1.3, 1.5],
+                      transition: { repeat: 3, duration: 0.8 }
+                    } : {}}
+                    onAnimationComplete={() => setFirstCardHintShown(true)}
+                    className="absolute top-3 right-3"
+                  >
+                    <ChevronRight className="w-4 h-4 text-foreground/40" />
+                  </motion.div>
+                </motion.div>
+              ))}
+            </MotionDiv>
+          </div>
+        </div>
         </div>
 
         {/* Features Grid */}

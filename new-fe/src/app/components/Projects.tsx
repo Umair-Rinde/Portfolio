@@ -7,63 +7,63 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "FEMS - Farmer Empowerment System",
-      description: "A government-funded platform enabling farmers to access resources, expert advice, and track agricultural data with ease.",
-      techStack: ["React", "NestJS", "MongoDB", "JWT", "Tailwind"],
-      image: "🌾",
-      demoUrl: "#",
-      codeUrl: "https://github.com/Umair-Rinde/fems",
-      stars: 95,
-      forks: 27,
-      status: "Production",
-    },
-    {
-      id: 2,
       title: "Educationist.ai",
       description: "AI-based career guidance platform using LangChain and OpenAI to recommend personalized learning paths.",
       techStack: ["LangChain", "ChatGPT", "Python", "MongoDB", "React"],
       image: "🎯",
-      demoUrl: "#",
-      codeUrl: "https://github.com/Umair-Rinde/educationist-ai",
+      demoUrl: "https://educationist.ai/",
+      codeUrl: "https://github.com/Umair-Rinde",
       stars: 134,
       forks: 44,
       status: "Stable",
     },
     {
-      id: 3,
-      title: "LMS - Learning Management System",
-      description: "A full-featured LMS with blogs, course enrollment, authentication, and video streaming. Built with NestJS backend.",
-      techStack: ["NestJS", "PostgreSQL", "React", "FFmpeg", "JWT"],
-      image: "📚",
-      demoUrl: "#",
-      codeUrl: "https://github.com/Umair-Rinde/nestjs-lms",
-      stars: 112,
-      forks: 38,
-      status: "Production",
+      id: 2,
+      title: "Career View App",
+      description: "Mock interview and job-seeking mobile platform helping users prepare for real job roles using AI.",
+      techStack: ["React Native", "Firebase", "Python", "MongoDB"],
+      image: "📱",
+      demoUrl: "https://careerview.fladdra.com/",
+      codeUrl: "https://github.com/Umair-Rinde",
+      stars: 102,
+      forks: 35,
+      status: "Mobile",
     },
     {
-      id: 4,
+      id: 3,
       title: "ITSM Project (Fladdra Consultancy)",
       description: "Incident management system built using Django and React. Supports email-to-ticket automation using Google Console.",
       techStack: ["Django", "React", "Google Cloud", "Azure", "SMTP"],
       image: "🛠️",
-      demoUrl: "#",
-      codeUrl: "#",
+      demoUrl: "https://dev.bizitsm.com/user-login",
+      codeUrl: "https://github.com/Umair-Rinde",
       stars: 89,
       forks: 21,
       status: "Enterprise",
     },
     {
+      id: 4,
+      title: "LMS - Learning Management System",
+      description: "A full-featured LMS with blogs, course enrollment, authentication, and video streaming. Built with NestJS backend.",
+      techStack: ["NestJS", "PostgreSQL", "React", "FFmpeg", "JWT"],
+      image: "📚",
+      
+      codeUrl: "https://github.com/Umair-Rinde",
+      stars: 112,
+      forks: 38,
+      status: "Production",
+    },
+    {
       id: 5,
-      title: "Career View App",
-      description: "Mock interview and job-seeking mobile platform helping users prepare for real job roles using AI.",
-      techStack: ["React Native", "Firebase", "Python", "MongoDB"],
-      image: "📱",
-      demoUrl: "#",
-      codeUrl: "https://github.com/Umair-Rinde/career-view-app",
-      stars: 102,
-      forks: 35,
-      status: "Mobile",
+      title: "FEMS - Farmer Empowerment System",
+      description: "A government-funded platform enabling farmers to access resources, expert advice, and track agricultural data with ease.",
+      techStack: ["React", "NestJS", "MongoDB", "JWT", "Tailwind"],
+      image: "🌾",
+      
+      codeUrl: "https://github.com/Umair-Rinde/fems",
+      stars: 95,
+      forks: 27,
+      status: "Production",
     },
     {
       id: 6,
@@ -71,8 +71,8 @@ const Projects = () => {
       description: "Camera-based real-time human detection using Flask and Arduino. Sends alerts via SMS using Twilio.",
       techStack: ["Flask", "Python", "Arduino", "SQLite", "Twilio"],
       image: "👁️",
-      demoUrl: "#",
-      codeUrl: "https://github.com/Umair-Rinde/human-intrusion-detection",
+      
+      codeUrl: "https://github.com/Umair-Rinde",
       stars: 75,
       forks: 18,
       status: "Scale",
@@ -248,15 +248,19 @@ const Projects = () => {
 
                     {/* Action Buttons */}
                     <div className="flex space-x-2 md:space-x-3 mt-auto">
+                    {project.demoUrl && (
                       <a
                         href={project.demoUrl}
+                        target='_blank'
                         className="flex items-center px-3 py-1.5 md:px-4 md:py-2 glass-card rounded-lg hover:bg-foreground/20 transition-all duration-300 group/btn flex-1 justify-center text-sm"
                       >
                         <Eye className="w-3 h-3 md:w-4 md:h-4 mr-2 group-hover/btn:scale-110 transition-transform duration-300" />
                         <span className="text-xs md:text-sm font-medium">Demo</span>
                       </a>
+                    )}
                       <a
                         href={project.codeUrl}
+                        target='_blank'
                         className="flex items-center px-3 py-1.5 md:px-4 md:py-2 glass-card rounded-lg hover:bg-foreground/20 transition-all duration-300 group/btn flex-1 justify-center text-sm"
                       >
                         <Github className="w-3 h-3 md:w-4 md:h-4 mr-2 group-hover/btn:scale-110 transition-transform duration-300" />
@@ -290,3 +294,7 @@ const Projects = () => {
 };
 
 export default Projects;
+
+
+
+
