@@ -32,18 +32,23 @@ const Hero = () => {
             <div className="flex justify-center lg:justify-start space-x-6 mb-12">
               <a
                 href="https://github.com/Umair-Rinde"
+                target='_blank'
                 className="glass-card p-3 rounded-full hover:scale-110 transition-all duration-300 group"
               >
                 <Github className="w-6 h-6 text-foreground/80 group-hover:text-foreground" />
               </a>
               <a
                 href="https://www.linkedin.com/in/umair-rinde-198024231/"
+                target='_blank'
+
                 className="glass-card p-3 rounded-full hover:scale-110 transition-all duration-300 group"
               >
                 <Linkedin className="w-6 h-6 text-foreground/80 group-hover:text-foreground" />
               </a>
               <a
                 href="mailto:rindeumair@gmail.com"
+                target='_blank'
+
                 className="glass-card p-3 rounded-full hover:scale-110 transition-all duration-300 group"
               >
                 <Mail className="w-6 h-6 text-foreground/80 group-hover:text-foreground" />
