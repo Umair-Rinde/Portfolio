@@ -112,7 +112,7 @@ const About = () => {
                 className="space-y-6"
                 animate={{ y: ["0%", "-50%"] }}
                 transition={{
-                  duration: skills.length * 10,
+                  duration: skills.length * 5,
                   ease: "linear",
                   repeat: Infinity,
                 }}

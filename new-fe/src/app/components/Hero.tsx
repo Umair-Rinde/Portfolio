@@ -75,7 +75,7 @@ const Hero = () => {
 
                   {/* Profile Image */}
                   <img
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&h=500&fit=crop&crop=face"
+                    src="/profile.png"
                     alt="John Doe - Full Stack Developer"
                     className="w-full h-full object-cover rounded-full"
                   />
