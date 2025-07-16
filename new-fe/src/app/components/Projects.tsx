@@ -2,83 +2,10 @@
 import {  Github, Eye, Star, GitFork, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import {PROJECTS} from './constants/projects';
 
 const Projects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "Educationist.ai",
-      description: "AI-based career guidance platform using LangChain and OpenAI to recommend personalized learning paths.",
-      techStack: ["LangChain", "ChatGPT", "Python", "MongoDB", "React"],
-      image: "🎯",
-      demoUrl: "https://educationist.ai/",
-      codeUrl: "https://github.com/Umair-Rinde",
-      stars: 134,
-      forks: 44,
-      status: "Stable",
-    },
-    {
-      id: 2,
-      title: "Career View App",
-      description: "Mock interview and job-seeking mobile platform helping users prepare for real job roles using AI.",
-      techStack: ["React Native", "Firebase", "Python", "MongoDB"],
-      image: "📱",
-      demoUrl: "https://careerview.fladdra.com/",
-      codeUrl: "https://github.com/Umair-Rinde",
-      stars: 102,
-      forks: 35,
-      status: "Mobile",
-    },
-    {
-      id: 3,
-      title: "ITSM Project (Fladdra Consultancy)",
-      description: "Incident management system built using Django and React. Supports email-to-ticket automation using Google Console.",
-      techStack: ["Django", "React", "Google Cloud", "Azure", "SMTP"],
-      image: "🛠️",
-      demoUrl: "https://dev.bizitsm.com/user-login",
-      codeUrl: "https://github.com/Umair-Rinde",
-      stars: 89,
-      forks: 21,
-      status: "Enterprise",
-    },
-    {
-      id: 4,
-      title: "LMS - Learning Management System",
-      description: "A full-featured LMS with blogs, course enrollment, authentication, and video streaming. Built with NestJS backend.",
-      techStack: ["NestJS", "PostgreSQL", "React", "FFmpeg", "JWT"],
-      image: "📚",
-      
-      codeUrl: "https://github.com/Umair-Rinde",
-      stars: 112,
-      forks: 38,
-      status: "Production",
-    },
-    {
-      id: 5,
-      title: "FEMS - Farmer Empowerment System",
-      description: "A government-funded platform enabling farmers to access resources, expert advice, and track agricultural data with ease.",
-      techStack: ["React", "NestJS", "MongoDB", "JWT", "Tailwind"],
-      image: "🌾",
-      
-      codeUrl: "https://github.com/Umair-Rinde/fems",
-      stars: 95,
-      forks: 27,
-      status: "Production",
-    },
-    {
-      id: 6,
-      title: "Human Intrusion Detection System",
-      description: "Camera-based real-time human detection using Flask and Arduino. Sends alerts via SMS using Twilio.",
-      techStack: ["Flask", "Python", "Arduino", "SQLite", "Twilio"],
-      image: "👁️",
-      
-      codeUrl: "https://github.com/Umair-Rinde",
-      stars: 75,
-      forks: 18,
-      status: "Scale",
-    },
-  ];
-
+  const projects = PROJECTS;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<'left' | 'right'>('right');
   const [isMobile, setIsMobile] = useState(false);
