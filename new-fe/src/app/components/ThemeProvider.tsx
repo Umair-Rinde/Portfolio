@@ -31,6 +31,7 @@ export function ThemeProvider({
   useEffect(() => {
     setMounted(true);
     const savedTheme = typeof window !== 'undefined' 
+
       ? (localStorage.getItem(storageKey) as Theme) || defaultTheme
       : defaultTheme;
     setTheme(savedTheme);
