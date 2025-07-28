@@ -115,7 +115,7 @@ const features = [
             </span>
           </h2>
           <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-            I&apos;m a passionate full-stack developer with 5+ years of experience
+            I&apos;m a passionate full-stack developer with 2+ years of experience
             creating digital solutions that combine beautiful design with
             powerful functionality.
           </p>
