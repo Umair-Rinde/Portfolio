@@ -5,9 +5,9 @@ export const CODESNIPPET = `const developer = {
   passion: "Building amazing products",
   
   skills: {
-    frontend: ["React", "TypeScript"],
-    backend: ["Node.js", "Python"],
-    databases: ["PostgreSQL", "MongoDB"]
+    frontend: ["NextJs", "React", "TypeScript"],
+    backend: ["Node.js", "Python", "NestJS", "Django"],
+    databases: ["PostgreSQL", "MongoDB", "MySQL", "SQLite"],
   },
   
   currentFocus: "Full-stack development",

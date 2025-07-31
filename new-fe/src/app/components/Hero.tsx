@@ -91,7 +91,7 @@ const Hero = () => {
                   {/* Inner border stroke */}
                   <div className="absolute inset-0 rounded-full border-2 border-white/20"></div>
                 </div>
-              </div>
+              </div>    
 
               {/* Floating elements around image */}
               <div className="absolute -top-4 -right-4 glass-card p-2 rounded-lg animate-float">
