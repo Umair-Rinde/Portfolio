@@ -19,7 +19,7 @@ const CompaniesSection = () => {
                         </span>
                     </h2>
                     <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-                        I&apos;ve collaborated with amazing teams to build impactful products.
+                        I&apos; ve collaborated with amazing teams to build impactful products.
                     </p>
                 </div>
 
