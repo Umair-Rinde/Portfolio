@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Briefcase, Building2, Clock, Globe } from 'lucide-react';
+import {  Building2, Clock, Globe } from 'lucide-react';
 import { COMPANIES } from '../constants/companies';
 
 const CompaniesSection = () => {
@@ -15,11 +15,11 @@ const CompaniesSection = () => {
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl font-bold mb-6">
                         <span className="bg-gradient-to-r from-primary to-pink-400 bg-clip-text text-transparent">
-                            Companies I've Worked With
+                            Companies I&apos;ve Worked With
                         </span>
                     </h2>
                     <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
-                        I've collaborated with amazing teams to build impactful products.
+                        I&apos;ve collaborated with amazing teams to build impactful products.
                     </p>
                 </div>
 
@@ -54,7 +54,7 @@ const CompaniesSection = () => {
                     <div className="lg:col-span-2">
                         <div className="glass-card p-6 rounded-2xl h-full">
                             {/* Company header remains the same */}
-                            <div className="flex glass p-5 rounded-lg items-start gap-4 mb-4">
+                            <div className="flex glass-card p-5 rounded-lg items-start gap-4 mb-4">
                                 <div className="w-14 h-14 rounded-lg bg-white p-2 flex items-center justify-center shrink-0">
                                     <img src={selectedCompany.logo} alt={selectedCompany.name} className="w-full h-full object-contain" />
                                 </div>
