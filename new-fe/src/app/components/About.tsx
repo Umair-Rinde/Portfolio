@@ -4,8 +4,8 @@ import { Code, Palette, Zap, Users, Terminal, Pause, Play, ChevronUp, ChevronDow
 import { motion, useAnimationFrame, useMotionValue, useTransform } from "framer-motion";
 import { useRef, useState, useLayoutEffect } from "react";
 import SkillModal from "./SkillModal";
-import {SKILLS} from "./constants/skills";
-import { CODESNIPPET } from "./constants/codesnippet";
+import {SKILLS} from "../constants/skills";
+import { CODESNIPPET } from "../constants/codesnippet";
 
 const MotionDiv = motion("div");
 
@@ -123,7 +123,7 @@ const features = [
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           {/* Profile */}
-          <div className="glass-card rounded-2xl overflow-hidden animate-fade-in">
+          <div className="glass-card rounded-2xl hover:scale-110 transition-all duration-300 overflow-hidden  animate-fade-in">
             <div className="flex items-center p-4 border-b border-foreground/10">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 bg-red-400 rounded-full"></div>
@@ -137,8 +137,8 @@ const features = [
                 </span>
               </div>
             </div>
-            <pre className="p-6 text-sm font-mono text-left overflow-x-auto">
-              <code className="text-foreground/80">{codeSnippet}</code>
+            <pre className="p-6 text-sm font-mono text-left  overflow-x-auto ">
+              <code className="text-foreground/80 ">{codeSnippet}</code>
             </pre>
           </div>
 
@@ -236,7 +236,7 @@ const features = [
           {features.map((feature, index) => (
             <div
               key={feature.title}
-              className="glass-card p-8 rounded-2xl text-center hover:scale-105 transition-all duration-300 group animate-fade-in"
+              className="glass-card p-8 rounded-2xl text-center hover:scale-105  transition-all duration-300 group animate-fade-in"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className="text-primary mb-4 group-hover:scale-110 transition-transform duration-300">

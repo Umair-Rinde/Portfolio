@@ -2,7 +2,7 @@
 import {  Github, Eye, Star, GitFork, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import {PROJECTS} from './constants/projects';
+import {PROJECTS} from '../constants/projects';
 import Image from 'next/image';
 
 const Projects = () => {
@@ -180,7 +180,7 @@ const Projects = () => {
                       <a
                         href={project.demoUrl}
                         target='_blank'
-                        className="flex items-center px-3 py-1.5 md:px-4 md:py-2 glass-card rounded-lg hover:bg-foreground/20 transition-all duration-300 group/btn flex-1 justify-center text-sm"
+                        className="flex items-center px-3 py-1.5 md:px-4 md:py-2 glass-card rounded-lg hover:scale-110 hover:bg-foreground/20 transition-all duration-300 group/btn flex-1 justify-center text-sm"
                       >
                         <Eye className="w-3 h-3 md:w-4 md:h-4 mr-2 group-hover/btn:scale-110 transition-transform duration-300" />
                         <span className="text-xs md:text-sm font-medium">Demo</span>
@@ -189,7 +189,7 @@ const Projects = () => {
                       <a
                         href={project.codeUrl}
                         target='_blank'
-                        className="flex items-center px-3 py-1.5 md:px-4 md:py-2 glass-card rounded-lg hover:bg-foreground/20 transition-all duration-300 group/btn flex-1 justify-center text-sm"
+                        className="flex items-center px-3 py-1.5 md:px-4 md:py-2 glass-card rounded-lg hover:bg-foreground/20 hover:scale-110 transition-all duration-300 group/btn flex-1 justify-center text-sm"
                       >
                         <Github className="w-3 h-3 md:w-4 md:h-4 mr-2 group-hover/btn:scale-110 transition-transform duration-300" />
                         <span className="text-xs md:text-sm font-medium">Code</span>
