@@ -1,10 +1,25 @@
 export const COMPANIES = [
+    {
+      name: 'Quartoloom',
+      logo: '/logos/quart.png',
+      role: 'Associate Sofwtawre Developer',
+      duration: '2026 - Present',
+      website: 'https://www.quartoloom.com',
+      projects: [
+        'Matrimonial Platform Development',
+        'Optimized Search Algorithms',
+        'User Authentication and Security',
+        'SQL Server Integration Services (SSIS)',
+        'Logistic Operations Software'
+      ],
+      technologies: ['Django', 'PostgreSQL', 'GCP', 'SSIS', 'React', 'SQL']
+    },
         
     {
         name: 'Alif',
         logo: '/logos/alif.png',
         role: 'Backend Developer',
-        duration: '2025 - Present',
+        duration: '2025 - 2026',
         website: 'https://www.alifconsulting.com/',
         projects: [
           'FastAPI Custom Gateway Integration',
@@ -27,18 +42,5 @@ export const COMPANIES = [
         'AI-Powered Assessment Tools'
     ],
     technologies: ['FastAPI', 'Django', 'Flask','MongoDB', 'PostgreSQL', 'React','Next.JS','Nest.JS','Node.JS', 'TypeScript', 'JavaScript', 'Azure', 'GCP', 'Firebase' ]
-    },
-    {
-      name: 'Quartoloom',
-      logo: '/logos/quart.png',
-      role: 'Backend Developer [Freelancer]',
-      duration: 'Dec 2024 - Jan 2025',
-      website: 'https://www.quartoloom.com',
-      projects: [
-        'Matrimonial Platform Development',
-        'Optimized Search Algorithms',
-        'User Authentication and Security',
-      ],
-      technologies: ['Django', 'PostgreSQL', 'GCP']
-    },
+    }
   ];
