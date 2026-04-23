@@ -122,6 +122,7 @@
     @apply bg-gradient-to-br from-slate-50 via-cyan-50 to-slate-50 text-foreground transition-all duration-300;
     min-height: 100vh;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    cursor: default;
   }
 
   .dark body {
@@ -130,6 +131,18 @@
 
   html {
     scroll-behavior: smooth;
+  }
+
+  a,
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+
+  input,
+  textarea,
+  [contenteditable="true"] {
+    cursor: text;
   }
 
   /* Code and terminal styling */

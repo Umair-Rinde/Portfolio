@@ -2,14 +2,45 @@
 import {  Github, Eye, Star, GitFork, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import {PROJECTS} from '../constants/projects';
 import Image from 'next/image';
 
+type Project = {
+  id: number;
+  title: string;
+  description: string;
+  techStack: string[];
+  image: string;
+  demoUrl: string | null;
+  codeUrl: string | null;
+  stars: number;
+  forks: number;
+  status: string;
+};
+
 const Projects = () => {
-  const projects = PROJECTS;
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState<'left' | 'right'>('right');
   const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch('/api/projects');
+        const data = (await res.json()) as Project[];
+        if (!cancelled) setProjects(Array.isArray(data) ? data : []);
+      } catch {
+        if (!cancelled) setProjects([]);
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,6 +53,7 @@ const Projects = () => {
   }, []);
 
   const nextProject = () => {
+    if (projects.length === 0) return;
     setDirection('right');
     setCurrentIndex((prevIndex) => 
       prevIndex === projects.length - 1 ? 0 : prevIndex + 1
@@ -29,6 +61,7 @@ const Projects = () => {
   };
 
   const prevProject = () => {
+    if (projects.length === 0) return;
     setDirection('left');
     setCurrentIndex((prevIndex) => 
       prevIndex === 0 ? projects.length - 1 : prevIndex - 1
@@ -48,6 +81,7 @@ const Projects = () => {
   };
 
   const getVisibleProjects = () => {
+    if (projects.length === 0) return [];
     if (isMobile) {
       return [projects[currentIndex]];
     }
@@ -100,6 +134,7 @@ const Projects = () => {
             onClick={prevProject}
             className="absolute left-0 md:left-4 top-1/2 -translate-y-1/2 z-10 glass p-2 rounded-full hover:bg-foreground/20 transition-all duration-300"
             aria-label="Previous project"
+            disabled={projects.length === 0}
           >
             <ChevronLeft className="w-4 h-4 md:w-6 md:h-6" />
           </button>
@@ -107,12 +142,23 @@ const Projects = () => {
             onClick={nextProject}
             className="absolute right-0 md:right-4 top-1/2 -translate-y-1/2 z-10 glass p-2 rounded-full hover:bg-foreground/20 transition-all duration-300"
             aria-label="Next project"
+            disabled={projects.length === 0}
           >
             <ChevronRight className="w-4 h-4 md:w-6 md:h-6" />
           </button>
 
           {/* Carousel Slides */}
           <div className={`flex items-center justify-center ${isMobile ? 'px-2' : 'gap-6 px-10'} py-6 md:py-10 min-h-[500px] md:min-h-[700px]`}>
+            {loading ? (
+              <div className="glass-card rounded-2xl p-8 text-center text-foreground/70 w-full max-w-[520px]">
+                Loading projects...
+              </div>
+            ) : null}
+            {!loading && projects.length === 0 ? (
+              <div className="glass-card rounded-2xl p-8 text-center text-foreground/70 w-full max-w-[520px]">
+                No projects found.
+              </div>
+            ) : null}
             {getVisibleProjects().map((project) => (
               <motion.div
                 key={project.id}
@@ -186,14 +232,16 @@ const Projects = () => {
                         <span className="text-xs md:text-sm font-medium">Demo</span>
                       </a>      
                     )}
-                      <a
-                        href={project.codeUrl}
-                        target='_blank'
-                        className="flex items-center px-3 py-1.5 md:px-4 md:py-2 glass-card rounded-lg hover:bg-foreground/20 hover:scale-110 transition-all duration-300 group/btn flex-1 justify-center text-sm"
-                      >
-                        <Github className="w-3 h-3 md:w-4 md:h-4 mr-2 group-hover/btn:scale-110 transition-transform duration-300" />
-                        <span className="text-xs md:text-sm font-medium">Code</span>
-                      </a>
+                      {project.codeUrl ? (
+                        <a
+                          href={project.codeUrl}
+                          target='_blank'
+                          className="flex items-center px-3 py-1.5 md:px-4 md:py-2 glass-card rounded-lg hover:bg-foreground/20 hover:scale-110 transition-all duration-300 group/btn flex-1 justify-center text-sm"
+                        >
+                          <Github className="w-3 h-3 md:w-4 md:h-4 mr-2 group-hover/btn:scale-110 transition-transform duration-300" />
+                          <span className="text-xs md:text-sm font-medium">Code</span>
+                        </a>
+                      ) : null}
                     </div>
                   </div>
                 </div>

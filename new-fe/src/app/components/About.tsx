@@ -2,14 +2,13 @@
 
 import { Code, Palette, Zap, Users, Terminal, Pause, Play, ChevronUp, ChevronDown, ChevronRight } from "lucide-react";
 import { motion, useAnimationFrame, useMotionValue, useTransform } from "framer-motion";
-import { useRef, useState, useLayoutEffect } from "react";
+import { useEffect, useRef, useState, useLayoutEffect } from "react";
 import SkillModal from "./SkillModal";
-import {SKILLS} from "../constants/skills";
-import { CODESNIPPET } from "../constants/codesnippet";
 
 const MotionDiv = motion("div");
 
 type Skill = {
+  id?: number;
   name: string;
   level: number;
   color: string;
@@ -20,10 +19,36 @@ type Skill = {
 
 const About = () => {
   const [firstCardHintShown, setFirstCardHintShown] = useState(false);
-  const skills = SKILLS;
-  
+  const [skills, setSkills] = useState<Skill[]>([]);
+  const [codeSnippet, setCodeSnippet] = useState("");
+  const [loading, setLoading] = useState(true);
 
-  const codeSnippet = CODESNIPPET
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const [skillsRes, snippetRes] = await Promise.all([
+          fetch("/api/skills"),
+          fetch("/api/codesnippet"),
+        ]);
+        const skillsData = (await skillsRes.json()) as Skill[];
+        const snippetData = (await snippetRes.json()) as { value?: string };
+        if (cancelled) return;
+        setSkills(Array.isArray(skillsData) ? skillsData : []);
+        setCodeSnippet(snippetData?.value ?? "");
+      } catch {
+        if (!cancelled) {
+          setSkills([]);
+          setCodeSnippet("");
+        }
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
 const features = [
   {
@@ -71,8 +96,9 @@ const features = [
   // Scrolling loop
   let currentY = 0;
   useAnimationFrame(() => {
-    if (isPlaying && itemHeight > 0) {
-      currentY = (currentY + speed) % (skills.length * itemHeight);
+    const total = skills.length * itemHeight;
+    if (isPlaying && itemHeight > 0 && total > 0) {
+      currentY = (currentY + speed) % total;
       y.set(currentY);
     }
   });
@@ -138,7 +164,7 @@ const features = [
               </div>
             </div>
             <pre className="p-6 text-sm font-mono text-left  overflow-x-auto ">
-              <code className="text-foreground/80 ">{codeSnippet}</code>
+              <code className="text-foreground/80 ">{loading ? "Loading..." : codeSnippet}</code>
             </pre>
           </div>
 
@@ -184,10 +210,13 @@ const features = [
               className="space-y-6"
               style={{ y: yTransform }}
             >
+              {skills.length === 0 && !loading ? (
+                <div className="p-6 text-sm text-foreground/70">No skills found.</div>
+              ) : null}
               {[...skills, ...skills].map((skill, index) => (
                 <motion.div
                   ref={index === 0 ? itemRef : null}
-                  key={`${skill.name}-${index}`}
+                  key={`${skill.id ?? skill.name}-${index}`}
                   className="glass-card p-6 rounded-xl cursor-pointer relative active:scale-95 transition-transform"
                   style={{ animationDelay: `${index * 0.1}s` }}
                   onClick={() => handleSkillClick(skill)}
