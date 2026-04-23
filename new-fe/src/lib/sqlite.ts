@@ -1,6 +1,7 @@
 import Database from "better-sqlite3";
 import path from "path";
 import { existsSync, mkdirSync } from "fs";
+import os from "os";
 
 import { PROJECTS } from "@/app/constants/projects";
 import { SKILLS } from "@/app/constants/skills";
@@ -9,8 +10,28 @@ import { CODESNIPPET } from "@/app/constants/codesnippet";
 
 type GlobalWithDb = typeof globalThis & { __portfolioDb?: Database.Database };
 
-const DB_DIR = path.join(process.cwd(), "data");
-const DB_PATH = path.join(DB_DIR, "portfolio.sqlite");
+function resolveDbPath() {
+  const envPath = process.env.PORTFOLIO_DB_PATH || process.env.SQLITE_PATH;
+  if (envPath) return path.isAbsolute(envPath) ? envPath : path.join(process.cwd(), envPath);
+  return path.join(process.cwd(), "data", "portfolio.sqlite");
+}
+
+function ensureParentDir(filePath: string) {
+  const dir = path.dirname(filePath);
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+}
+
+function openDb(preferredPath: string) {
+  try {
+    ensureParentDir(preferredPath);
+    return new Database(preferredPath, { readonly: false, fileMustExist: false });
+  } catch {
+    // If the filesystem is read-only (common on some hosting), fallback to OS temp.
+    const tmpPath = path.join(os.tmpdir(), "portfolio.sqlite");
+    ensureParentDir(tmpPath);
+    return new Database(tmpPath, { readonly: false, fileMustExist: false });
+  }
+}
 
 function ensureSchema(db: Database.Database) {
   db.exec(`
@@ -153,8 +174,7 @@ export function getDb() {
   const g = globalThis as GlobalWithDb;
   if (g.__portfolioDb) return g.__portfolioDb;
 
-  if (!existsSync(DB_DIR)) mkdirSync(DB_DIR, { recursive: true });
-  const db = new Database(DB_PATH);
+  const db = openDb(resolveDbPath());
   ensureSchema(db);
   seedIfEmpty(db);
 
